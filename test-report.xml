@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/utkarsh.upadhyay/Projects/ProjectAlstom/src/utils/__tests__/storage.test.ts">
+    <testCase name="Storage Utility saveAlbumList should save album list to AsyncStorage" duration="1"/>
+    <testCase name="Storage Utility saveAlbumList should handle errors gracefully when saving fails" duration="1"/>
+    <testCase name="Storage Utility getAlbumList should retrieve album list from AsyncStorage" duration="0"/>
+    <testCase name="Storage Utility getAlbumList should return null when no cached data exists" duration="0"/>
+    <testCase name="Storage Utility getAlbumList should handle errors gracefully when retrieval fails" duration="1"/>
+  </file>
+</testExecutions>

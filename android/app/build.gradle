@@ -2,6 +2,15 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+project.ext.envConfigFiles = [
+    clientadebug: ".env.clientA",
+    clientarelease: ".env.clientA",
+    clientbdebug: ".env.clientB",
+    clientbrelease: ".env.clientB",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -85,6 +94,22 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    flavorDimensions "client"
+    
+    productFlavors {
+        clientA {
+            dimension "client"
+            applicationId "com.projectalstom.clienta"
+            resValue "string", "app_name", "Client A"
+        }
+        clientB {
+            dimension "client"
+            applicationId "com.projectalstom.clientb"
+            resValue "string", "app_name", "Client B"
+        }
+    }
+
     signingConfigs {
         debug {
             storeFile file('debug.keystore')

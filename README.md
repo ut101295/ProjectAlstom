@@ -1,97 +1,85 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# ProjectAlstom - White Label React Native App
 
-# Getting Started
+A React Native application configured for white-labeling, allowing multiple branded versions from a single codebase.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Quick Start
 
-## Step 1: Start Metro
+### Install Dependencies
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+```bash
+npm install
+cd ios && pod install && cd ..
 ```
 
-## Step 2: Build and run your app
+### Build Android
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+```bash
+# Client A Debug
+npm run build:android:clientA
 
-### Android
+# Client B Debug
+npm run build:android:clientB
 
-```sh
-# Using npm
-npm run android
+# Client A Release
+npm run build:android:clientA:release
 
-# OR using Yarn
-yarn android
+# Client B Release
+npm run build:android:clientB:release
 ```
 
-### iOS
+### Build iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+**Note**: Requires manual Xcode setup first (see full documentation)
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+```bash
+# Client A Debug
+npm run build:ios:clientA
 
-```sh
-bundle install
+# Client B Debug
+npm run build:ios:clientB
 ```
 
-Then, and every time you update your native dependencies, run:
+## Clients Configured
 
-```sh
-bundle exec pod install
-```
+- **Client A**: Blue theme, bundle ID `com.projectalstom.clienta`
+- **Client B**: Green theme, bundle ID `com.projectalstom.clientb`
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Documentation
 
-```sh
-# Using npm
-npm run ios
+**[WHITE_LABEL_IMPLEMENTATION.md](./WHITE_LABEL_IMPLEMENTATION.md)** - Complete implementation guide
 
-# OR using Yarn
-yarn ios
-```
+This document contains:
+- All changes made and why
+- Build scripts explanation
+- Android setup (complete)
+- iOS setup (manual steps required)
+- Testing procedures
+- Troubleshooting
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Tech Stack
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+- React Native 0.84.0
+- Redux Toolkit
+- react-native-config
+- AsyncStorage
+- NetInfo
+- TypeScript
 
-## Step 3: Modify your app
+## Features
 
-Now that you have successfully run the app, let's make changes!
+- White-label configuration
+- Multiple branded apps from one codebase
+- Dynamic colors and branding
+- Client-specific API endpoints
+- Offline support
+- Network detection
+- Visual client identification
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Status
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+- **Android**: Fully configured and working
+- **iOS**: Requires manual Xcode setup (15-20 min)
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## License
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Private

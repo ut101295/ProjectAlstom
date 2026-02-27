@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { appConfig } from '../config/appConfig';
 
-// Base API URL - iTunes API
-const BASE_URL = 'https://itunes.apple.com';
+// Base API URL - dynamically loaded from config
+const BASE_URL = appConfig.apiUrl;
 
 // Create axios instance with default config
 const api = axios.create({

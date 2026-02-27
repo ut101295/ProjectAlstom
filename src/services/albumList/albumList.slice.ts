@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { AlbumListState } from './albumList.types';
 import { fetchAlbums } from './albumList.service';
+import NetInfo from '@react-native-community/netinfo';
+import { storage } from '../../utils/storage';
 
 /**
  * Initial state for album list
@@ -16,13 +18,32 @@ const initialState: AlbumListState = {
 };
 
 /**
- * Async thunk for fetching album list
+ * Async thunk for fetching album list with offline support
  */
 export const fetchAlbumList = createAsyncThunk(
   'albumList/fetch',
   async (searchTerm: string) => {
-    const response = await fetchAlbums(searchTerm);
-    return response;
+    const netInfo = await NetInfo.fetch();
+    
+    if (netInfo.isConnected) {
+      try {
+        const response = await fetchAlbums(searchTerm);
+        await storage.saveAlbumList(searchTerm, response);
+        return response;
+      } catch (error) {
+        const cached = await storage.getAlbumList(searchTerm);
+        if (cached) {
+          return cached;
+        }
+        throw error;
+      }
+    } else {
+      const cached = await storage.getAlbumList(searchTerm);
+      if (cached) {
+        return cached;
+      }
+      throw new Error('No internet connection and no cached data available');
+    }
   }
 );
 
